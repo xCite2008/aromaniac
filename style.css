@@ -1,0 +1,267 @@
+/* fonts */
+@font-face {
+	font-family: 'Aquarelle';
+	font-style: normal;
+	src: local('Aquarelle'), local('Aquarelle-Regular'),
+		url(fonts/aquarelle.woff) format('woff'), url(fonts/aquarelle.ttf) format('truetype');
+}
+
+
+
+@media screen and (min-width: 768px) {
+	#hideforlargescreen {
+		display: none;
+	}
+	#showforlargescreen {
+		display: initial;
+	}
+}
+@media screen and (max-width: 768px) {
+	.logo {
+		display: none;
+	}
+	#hideforlargescreen {
+		display: initial;
+	}
+	#showforlargescreen {
+		display: none;
+	}
+
+
+}
+
+@media screen and (max-width: 576px) {
+
+}
+
+
+
+
+body {
+	/* background-color: #ffe9a1; */
+	padding: 0 0px;
+}
+
+.wrapper {
+	background: url("imgs/bgwrapper.jpg");
+	padding-bottom: 50px;
+}
+
+.header {
+	background-color: #ffffff;
+	width: 100%;
+	z-index: 1;
+}
+
+.logo {
+	height: 100px;
+	background: url("imgs/logobg.png") no-repeat;
+	background-size: cover;
+	font-family: 'Aquarelle', Arial;
+	font-size: 70px;
+	text-align: center;
+	color: white;
+	transition: 100ms ease-in-out;
+}
+
+.logo:hover{
+	text-shadow: 0px 0px 10px #000000;
+	color: #ffe2ac;
+	letter-spacing: 10px;
+	transition: 1s ease-in-out;
+	background-color: #000000;
+	filter: contrast(130%);
+}
+
+.brandinmenu {
+	color: #000000;
+	font-family: 'calibri', times;
+	font-size: 20px;
+	font-weight: bold;
+	text-decoration: none;
+	transition: all 150ms ease-in-out;
+}
+
+.brandinmenu:hover {
+	color: #582500;
+	text-decoration: none;
+	transition: all 150ms ease-in-out;
+	transform: scale(1.2);
+}
+
+.nav-link {
+	font-family: 'calibri', times;
+	font-size: 18px;
+	margin-left: 10px;
+}
+
+.slogan {
+	color: #ff0000;
+	padding-top: 40px;
+	padding-bottom: 30px;
+	font-size: 30px;
+	text-align: center;
+}
+
+.slogan span {
+	font-family: 'Aquarelle', Arial;
+	font-size: 70px;
+	font-size: 1.5em;
+}
+
+
+.homephotos {
+	margin: 10px 10px;
+	text-align: center;
+	/* height: 300px; */
+}
+
+.homephotos img{
+	width: 100%;
+	border: 5px solid #fff;
+	border-radius: 3px;
+	transition: all 300ms ease-in-out;
+}
+
+.homephotos img:hover {
+	transform: scale(1.1) rotate(-3deg);
+	filter: contrast(120%);
+	box-shadow: 0px 5px 3px #555555;
+	transition: all 300ms ease-in-out;
+}
+
+.homephotosinfo {
+	font-size: 18px;
+}
+
+/* contacts */
+.contacts_space{
+	padding: 15px;
+
+}
+
+.contactlinks {
+	text-decoration: none;
+	color: black;
+}
+
+.contactlinks:hover {
+	text-decoration: none;
+	color: #582500;
+}
+
+/* coffee shop */
+.content{
+	padding-top: 20px;
+}
+
+.list-group a {
+	margin-bottom: 10px;
+	color: #000;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+
+.product {
+	background: #fff none repeat scroll 0 0;
+	border: 1px solid #c0c0c0;
+	height: 390px;
+	overflow: hidden;
+	padding: 0px 0px;
+	position: relative;
+	text-align: center;
+	transition: all 0.5s ease 0s;
+	margin-bottom: 20px;
+}
+
+@media screen and (max-width: 575px) {
+	.product {
+		max-width: 250px;
+		/* left: 15%; */
+		text-align: center;
+	}
+
+}
+
+.product:hover {
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+}
+
+.product-img {
+	top: 100px;
+	height: 200px;
+}
+
+.product-title {
+	margin-top: 20px;
+}
+.product-title a {
+	color: #000000;
+	transition: 500ms ease-in-out;
+
+	font-weight: bold;
+	font-size: 18px;
+	text-transform: uppercase;
+	padding-top: 120px;
+}
+
+.product-title:hover a {
+	color: #582500;
+	transition: 100ms ease-in-out;
+	text-decoration: none;
+	cursor: default;
+}
+
+
+.product-desc {
+	top: 280px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	font-size: 16px;
+	font-weight: 500;
+	stroke-width: 1px white;
+}
+
+.product-price {
+	bottom: 15px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	color: #d51e08;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+
+/* --- footer --- */
+
+.footer {
+	border-top: white 3px solid;
+	background-color: #582500;
+	color: white;
+	font-size: 18px;
+	padding: 20px;
+	padding-bottom: -20px;
+}
+
+
+.footerlogo {
+	font-family: 'Aquarelle', Arial;
+	color: #ffe9a1;
+	font-size: 60px;
+	margin: 0 0;
+}
+
+.footer a {
+	color: #ffe9a1;
+	text-decoration: none;	
+}
+
+.footer a:hover {
+	color: #ffffff;
+	transition: 250ms ease-in-out;
+	}
+  

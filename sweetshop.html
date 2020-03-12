@@ -1,0 +1,178 @@
+<!doctype html>
+
+<html>
+<head>
+    <title>Кав'ярня</title>
+    <link rel="shortcut icon" href="imgs/favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="preloader.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/aro_sweet.js"></script>
+</head>
+
+<body>
+
+<!-- Прелоадер -->
+<div class="preloader">
+    <div class="preloader__row">
+        <div class="preloader__item"></div>
+        <div class="preloader__item"></div>
+    </div>
+</div>
+
+<!-- кнопка вверх -->
+<a id="buttonup"></a>
+
+<header class="header">
+    <div class="logo">Aromaniac</div>
+        
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="main">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="brandinmenu" href="index.html">
+                            Кав'ярня "Aromaniac"
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarText">
+                            <ul class="navbar-nav ml-auto">
+                                <li id="liid1" class="nav-item">
+                                    <a class="nav-link" href="index.html">Додому</a>
+                                </li>
+                                <li id="liid2" class="nav-item">
+                                    <a class="nav-link" href="coffeeshop.html">Кав'ярня</a>
+                                </li>
+                                <li id="liid3" class="nav-item active">
+                                    <a class="nav-link" href="sweetshop.html">Крамниця<span class="sr-only">(current)</span></a>
+                                </li>
+                                <li id="liid4" class="nav-item">
+                                    <a class="nav-link" href="contacts.html">Контакти</a>
+                                </li>
+                                <li id="liid5" class="nav-item">
+                                    <a class="nav-link" href="about.html">Про нас</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+    </div> 
+</header>
+
+
+<div class="wrapper">
+
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <!-- Тут менюшечка -->
+                </div>
+            </div>
+
+            <div class="col-md-9 products">
+                <div class="list-goods">
+                    <!-- Тут товары -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <p class="footerlogo">Aromaniac</p>
+                <span>Краща кав'ярня м. Маріуполь.</span>
+            </div>
+            <div class="col-md-4">
+                <p>Ми в соцмережах:</p>
+                <p><a href="https://telegram.org" target="_blank">telegram</a></p>
+                <p><a href="https://www.instagram.com/?hl=ru" target="_blank">instagram</a></p>
+            </div>
+            <div class="col-md-4">
+                <p>Телефони:</p>
+                <p><a href="tel:0001234567">(000) 123-45-67</a></p>
+                <p><a href="tel:0011234567">(001) 123-45-67</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<!-- script area -->
+
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!-- preloader ---------------------------------------------------------------------------------->
+<script>
+    window.onload = function () {
+        document.body.classList.add('loaded_hiding');
+        window.setTimeout(function () {
+            document.body.classList.add('loaded');
+            document.body.classList.remove('loaded_hiding');
+        }, 500);
+    }
+</script>
+
+<!-- UP button ---------------------------------------------------------------------------------->
+<script>
+    var btn = $('#buttonup');
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 100) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+    
+    btn.on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop:0}, '100');
+    });
+</script>
+
+<!-- Menu -------------------------------------------------------------------------------------->
+<script>
+
+    coffeemenu.forEach(i => {
+    
+        $('.list-group').append('<a href="#' + i.anchor + '" class="list-group-item">' + i.type + '</a>');
+
+        var goods = i.goods;
+        var str = '<div class="row">';
+
+        goods.forEach(i1 => {
+            console.log(goods.name);
+            str += '<div id="' + i.anchor + '" class="col-sm-4"><div class="product"><p class="product-title"><a href="#">' + i1.name + '</a></p>';
+            str += '<div class="product-img"><a href="#"><img src="' + i1.thumb + '" alt=""></a></div>'
+            str += '<p class="product-desc">' + i1.descr + '</p><p class="product-price">Ціна: ' + i1.price + ' грн.</p></div></div>';
+        });
+        
+        str += '</div>';
+        $('.list-goods').append(str);
+        });
+
+</script>
+
+</body>
+</html>
+
+
