@@ -235,7 +235,10 @@ body {
 	font-weight: 500;
 }
 
-
+/* --- about --- */
+.about {
+	font-size: 1.1em;
+}
 /* --- footer --- */
 
 .footer {
