@@ -86,7 +86,7 @@ body {
 	color: #582500;
 	text-decoration: none;
 	transition: all 150ms ease-in-out;
-	transform: scale(1.2);
+	/* transform: scale(1.2); */
 }
 
 .nav-link {
