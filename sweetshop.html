@@ -26,6 +26,63 @@
 <!-- кнопка вверх -->
 <a id="buttonup"></a>
 
+<!-- Modal --->
+<div class="modal fade" id="modalBuy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Сделать заказ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="modal-body" novalidate>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Ваше имя</span>
+                    </div>
+                    <input type="name" id="custumerName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="например, Олег" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid state.
+                    </div>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Ваш телефон</span>
+                    </div>
+                    <input type="tel" id="custumerTel" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="+380070070700" required>
+                </div>
+
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Ваш e-mail</span>
+                    </div>
+                    <input type="email" id="custumerEmail" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="your@e.mail" required>
+                </div>
+                
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="custumerQuantity">Количество</label>
+                    </div>
+                    <select class="custom-select" id="custumerQuantity" required>
+                        <option selected>Выберите количество</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                    </select>
+                  </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button type="submit" id="submit" class="btn btn-primary">Отправить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <header class="header">
     <div class="logo">Aromaniac</div>
         
@@ -68,7 +125,6 @@
     </div> 
 </header>
 
-
 <div class="wrapper">
 
     <div class="container content">
@@ -89,8 +145,6 @@
     </div>
     
 </div>
-
-
 
 <footer class="footer">
     <div class="container">
@@ -121,6 +175,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
 
 <!-- preloader ---------------------------------------------------------------------------------->
 <script>
@@ -146,34 +201,74 @@
     
     btn.on('click', function(e) {
         e.preventDefault();
-        $('html, body').animate({scrollTop:0}, '100');
+        $('html, body').animate({ scrollTop:0 }, '100');
     });
 </script>
 
 <!-- Menu -------------------------------------------------------------------------------------->
 <script>
 
-    coffeemenu.forEach(i => {
-    
+    var goodsid, goodsname, goodsprice;
+    var custumerName, custumerEmail, custumerTel, custumerQuantity;
+
+    coffeemenu.forEach(i => {    
         $('.list-group').append('<a href="#' + i.anchor + '" class="list-group-item">' + i.type + '</a>');
 
         var goods = i.goods;
         var str = '<div class="row">';
 
         goods.forEach(i1 => {
-            console.log(goods.name);
             str += '<div id="' + i.anchor + '" class="col-sm-4"><div class="product"><p class="product-title"><a href="#">' + i1.name + '</a></p>';
-            str += '<div class="product-img"><a href="#"><img src="' + i1.thumb + '" alt=""></a></div>'
+            str += '<div class="product-img"><a href="#" class="test" data-target="#modalBuy" data-id="' + i1.id + '" data-name="' + i1.name + '" data-price="' + i1.price + '">';
+            str += '<img src="' + i1.thumb + '" alt=""></a></div>'
             str += '<p class="product-desc">' + i1.descr + '</p><p class="product-price">Ціна: ' + i1.price + ' грн.</p></div></div>';
         });
         
-        str += '</div>';
-        $('.list-goods').append(str);
-        });
+    str += '</div>';
+    $('.list-goods').append(str);
+    });
 
+    $('body').on('click', '.test', function(e){
+        e.preventDefault();
+        var tempid = $(this).attr('data-id');
+        var tempname = $(this).attr('data-name');
+        var tempprice = $(this).attr('data-price');
+        sendorder(tempid, tempname, tempprice);
+    })
+
+
+</script>
+
+<!-- Buy --------------------------------------------------------------------------------------->
+<script>
+    function sendorder(id, name, price) {
+
+        $('#modalBuy').modal({keyboard: false});
+        $('#exampleModalCenterTitle').text('Заказ: ' + name);
+        goodsid = id;
+        goodsname = name;
+        goodsprice = price;
+    }
+
+    $('#submit').on('click', function(e) {
+        
+        var custumerName = document.getElementById("custumerName").value;
+        var custumerEmail = document.getElementById("custumerEmail").value;
+        var custumerTel = document.getElementById("custumerTel").value;
+        var custumerQuantity = document.getElementById("custumerQuantity").value;
+
+        Email.send({
+            SecureToken : "eb8454de-00ae-41b3-9c1e-768331d0cd93",
+            To : custumerEmail,
+            From : "reallyreallyexcited@gmail.com",
+            Subject : "Кофейня Aromaniac",
+            Body : "Здравствуйте, " + custumerName + "! Спасибо за ваш заказ: " + goodsname + ", " + custumerQuantity + " шт. К оплате: " + (goodsprice * custumerQuantity) + " грн."
+        }).then(
+        //message => alert(message)
+        );      
+    })
+    
 </script>
 
 </body>
 </html>
-
-

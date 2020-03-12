@@ -23,10 +23,10 @@
     </div>
 </div>
 
-<!-- кнопка вверх -------------------------------------------------------------------------------->
+<!-- кнопка вверх -->
 <a id="buttonup"></a>
 
-<!-- Modal --------------------------------------------------------------------------------------->
+<!-- Modal --->
 <div class="modal fade" id="modalBuy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -83,10 +83,6 @@
     </div>
 </div>
 
-
-
-
-
 <header class="header">
     <div class="logo">Aromaniac</div>
         
@@ -129,7 +125,6 @@
     </div> 
 </header>
 
-
 <div class="wrapper">
 
     <div class="container content">
@@ -150,8 +145,6 @@
     </div>
     
 </div>
-
-
 
 <footer class="footer">
     <div class="container">
@@ -208,21 +201,17 @@
     
     btn.on('click', function(e) {
         e.preventDefault();
-        $('html, body').animate({
-            scrollTop:0
-        }, '100');
+        $('html, body').animate({ scrollTop:0 }, '100');
     });
 </script>
 
 <!-- Menu -------------------------------------------------------------------------------------->
 <script>
 
-
     var goodsid, goodsname, goodsprice;
     var custumerName, custumerEmail, custumerTel, custumerQuantity;
 
-    coffeemenu.forEach(i => {
-    
+    coffeemenu.forEach(i => {    
         $('.list-group').append('<a href="#' + i.anchor + '" class="list-group-item">' + i.type + '</a>');
 
         var goods = i.goods;
@@ -241,14 +230,12 @@
 
     $('body').on('click', '.test', function(e){
         e.preventDefault();
-        // console.log(1);
         var tempid = $(this).attr('data-id');
         var tempname = $(this).attr('data-name');
         var tempprice = $(this).attr('data-price');
         sendorder(tempid, tempname, tempprice);
-        
-
     })
+
 
 </script>
 
@@ -269,12 +256,7 @@
         var custumerEmail = document.getElementById("custumerEmail").value;
         var custumerTel = document.getElementById("custumerTel").value;
         var custumerQuantity = document.getElementById("custumerQuantity").value;
-        
-        console.log('Имя: ' + custumerName + '\n\rТелефон: ' + custumerTel +
-            '\n\rE-mail: ' + custumerEmail + '\n\rЗаказ: ' + goodsname + ', ' + custumerQuantity + ' шт.');
-        $('#modalBuy').modal('toggle');
 
-        // ПОТОМ УБЕРИ КОММЕНТАРИЙ!!!
         Email.send({
             // Host : "smtp.gmail.com",
             // Username : "reallyreallyexcited@gmail.com",
@@ -287,22 +269,11 @@
             Subject : "Кофейня Aromaniac",
             Body : "Здравствуйте, " + custumerName + "! Спасибо за ваш заказ: " + goodsname + ", " + custumerQuantity + " шт. К оплате: " + (goodsprice * custumerQuantity) + " грн."
         }).then(
-        //message => alert(id + " | " + message)
+        //message => alert(message)
         );      
     })
     
 </script>
 
-
-
-
-
-
-
-
-
-
 </body>
 </html>
-
-
