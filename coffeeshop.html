@@ -258,13 +258,8 @@
         var custumerQuantity = document.getElementById("custumerQuantity").value;
 
         Email.send({
-            // Host : "smtp.gmail.com",
-            // Username : "reallyreallyexcited@gmail.com",
-            // Password : "enaxpadoptfxayjz",
             SecureToken : "eb8454de-00ae-41b3-9c1e-768331d0cd93",
-            //To : 'klimenko.a.aleksandra@gmail.com',
             To : custumerEmail,
-            //To : "it-dn@ukr.net",
             From : "reallyreallyexcited@gmail.com",
             Subject : "Кофейня Aromaniac",
             Body : "Здравствуйте, " + custumerName + "! Спасибо за ваш заказ: " + goodsname + ", " + custumerQuantity + " шт. К оплате: " + (goodsprice * custumerQuantity) + " грн."
