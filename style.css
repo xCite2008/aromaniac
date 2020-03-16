@@ -201,6 +201,23 @@ body {
 }
 
 
+.shop {
+	top: 150px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	font-size: 80px;
+	color: #ffffff00;
+	transition: all 1000ms ease 0s;
+	cursor: pointer;
+}
+
+.shop:hover {
+	color: #58250055;
+	transition: all 200ms ease 0s;
+	
+}
+
 
 
 .product:hover {
