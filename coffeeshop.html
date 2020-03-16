@@ -267,7 +267,7 @@
         }
 
         // correct input of phone number [+123456789012]
-        if (/^\+[0-9]{12}/i.test(custumerTel) == false ) {
+        if (/^\+[0-9]{12}$/i.test(custumerTel) == false ) {
             makeSubmitButtonRed(2);
         } else {
             correctInputForm++;
