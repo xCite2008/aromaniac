@@ -243,7 +243,7 @@
 <script>
     function sendorder(id, name, price) {
 
-        $('#modalBuy').modal({keyboard: false});
+        $('#modalBuy').modal();
         $('#exampleModalCenterTitle').text('Заказ: ' + name);
         goodsid = id;
         goodsname = name;
@@ -257,17 +257,69 @@
         var custumerTel = document.getElementById("custumerTel").value;
         var custumerQuantity = document.getElementById("custumerQuantity").value;
 
-        Email.send({
-            SecureToken : "eb8454de-00ae-41b3-9c1e-768331d0cd93",
-            To : custumerEmail,
-            From : "reallyreallyexcited@gmail.com",
-            Subject : "Кофейня Aromaniac",
-            Body : "Здравствуйте, " + custumerName + "! Спасибо за ваш заказ: " + goodsname + ", " + custumerQuantity + " шт. К оплате: " + (goodsprice * custumerQuantity) + " грн."
-        }).then(
-        //message => alert(message)
-        );      
+        var correctInputForm = 0;
+
+        // correct input of name [>2 symbols]
+        if (custumerName.length < 2) {
+            makeSubmitButtonRed(1);
+        } else {
+            correctInputForm++;
+        }
+
+        // correct input of phone number [+123456789012]
+        if (/^\+[0-9]{12}/i.test(custumerTel) == false ) {
+            makeSubmitButtonRed(2);
+        } else {
+            correctInputForm++;
+        }
+
+        // correct input of e-mail [a@bb.cc]
+        if ( /^[0-9a-z-_\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i.test(custumerEmail) == false ) {
+            makeSubmitButtonRed(3);
+        } else {
+            correctInputForm++;
+        }
+
+        //if (custumerQuantity.length > 3) { // was
+        if ( /^[0-9]$/i.test(custumerQuantity) == false ) {
+            makeSubmitButtonRed(4);
+        } else {
+            correctInputForm++;
+        }
+
+
+            // 4 means all fields correct
+        if (correctInputForm >= 4) {
+            Email.send({
+                SecureToken : "eb8454de-00ae-41b3-9c1e-768331d0cd93",
+                To : custumerEmail,
+                From : "reallyreallyexcited@gmail.com",
+                Subject : "Кофейня Aromaniac",
+                Body : "Здравствуйте, " + custumerName + "! Спасибо за ваш заказ: " + goodsname + ", " + custumerQuantity + " шт. К оплате: " + (goodsprice * custumerQuantity) + " грн."
+            }).then(
+            //message => alert(message)
+            );
+            $('#modalBuy').modal('toggle');
+        }
     })
     
+
+    function makeSubmitButtonRed(x) {
+        $('#submit').removeClass('btn-primary');
+        $('#submit').addClass('btn-danger');
+        if (x==1) { $('#custumerName').addClass('incorrectinput');}
+        if (x==2) { $('#custumerTel').addClass('incorrectinput');}
+        if (x==3) { $('#custumerEmail').addClass('incorrectinput');}
+        if (x==4) { $('#custumerQuantity').addClass('incorrectinput');}
+        setTimeout(function() {
+            $('#submit').addClass('btn-primary');
+            $('#submit').removeClass('btn-danger');
+            if (x==1) { $('#custumerName').removeClass('incorrectinput');}
+            if (x==2) { $('#custumerTel').removeClass('incorrectinput');}
+            if (x==3) { $('#custumerEmail').removeClass('incorrectinput');}
+            if (x==4) { $('#custumerQuantity').removeClass('incorrectinput');}
+        }, 500);
+    }
 </script>
 
 </body>
