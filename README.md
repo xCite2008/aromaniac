@@ -1,2 +1,2 @@
-# aromaniac.github.io
-My first hosting
+# aromaniac
+Test site of coffee shop
